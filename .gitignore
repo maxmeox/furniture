@@ -18,8 +18,8 @@ build/
 !.env.example
 !.env.test
 
-# Tenant config (real values — copy from .example.ts after clone)
-tenant.config.ts
+# Tenant config example (keep real config tracked for deployment)
+tenant.config.example.ts
 
 # Local database / generated files
 *.db
