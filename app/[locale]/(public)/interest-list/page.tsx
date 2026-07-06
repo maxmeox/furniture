@@ -3,7 +3,7 @@ import { InterestListPageClient } from "@/components/public/interest-list-page";
 import { SectionHeader } from "@/components/public/section-header";
 import { type Locale } from "@/i18n/routing";
 import { getShowroomProfile } from "@/lib/db-showroom-data";
-import { localizedProfileValue } from "@/lib/showroom-profile";
+import { localizedProfileValue, normalizeShowroomWhatsApp } from "@/lib/showroom-profile";
 
 const copy = {
   ar: "التصاميم والأقمشة والعروض المحفوظة تبقى على هذا الجهاز بدون حساب عميل.",
@@ -19,6 +19,7 @@ export default async function InterestListPage() {
       <SectionHeader title={t("interest")} description={localizedProfileValue(profile, "interestSubtitle", locale) || copy[locale]} />
       <InterestListPageClient
         locale={locale}
+        whatsapp={normalizeShowroomWhatsApp(profile.whatsapp)}
         settingsCopy={{
           emptyTitle: localizedProfileValue(profile, "interestEmptyTitle", locale),
           emptyText: localizedProfileValue(profile, "interestEmptyText", locale),

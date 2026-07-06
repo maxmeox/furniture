@@ -13,7 +13,7 @@ export async function PublicFooter({ locale }: { locale: Locale }) {
   const fallbackAddress = t("fallbackAddress");
   const year = new Date().getFullYear();
   const rightsText = t("rights", { name: showroomName ?? fallbackName, year: year.toString() });
-  const phone = profile.phone ?? "";
+  const phone = profile.whatsapp || profile.phone || "";
   const facebookUrl = profile.social?.facebook;
 
   const socialLinks = [

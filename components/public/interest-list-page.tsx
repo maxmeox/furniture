@@ -24,7 +24,7 @@ type InterestListLabels = {
   share?: string;
 };
 
-export function InterestListPageClient({ locale, settingsCopy }: { locale: string; settingsCopy?: InterestListLabels }) {
+export function InterestListPageClient({ locale, settingsCopy, whatsapp }: { locale: string; settingsCopy?: InterestListLabels; whatsapp?: string }) {
   const { items, removeItem, clear } = useInterestList();
   const t = useTranslations("interest");
   const labels = {
@@ -39,7 +39,7 @@ export function InterestListPageClient({ locale, settingsCopy }: { locale: strin
   };
 
   function shareList() {
-    const whatsapp = normalizeShowroomWhatsApp(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER);
+    const waNumber = whatsapp || normalizeShowroomWhatsApp(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER);
     const message = buildWhatsAppMessage({
       locale: locale as Locale,
       entity: { type: "interest_list", id: "interest-list", title: "Interest list", href: `/${locale}/interest-list`, items },
@@ -49,7 +49,7 @@ export function InterestListPageClient({ locale, settingsCopy }: { locale: strin
       campaignContext: readStoredCampaignContext(),
       referrer: typeof document !== "undefined" ? document.referrer || undefined : undefined,
     });
-    window.open(formatWhatsAppLink(whatsapp, message), "_blank", "noopener,noreferrer");
+    window.open(formatWhatsAppLink(waNumber, message), "_blank", "noopener,noreferrer");
   }
 
   return (
