@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Furniture detail close-up</title>
+  <desc id="desc">Close-up of fabric stitching and wood detail.</desc>
+  <rect width="1200" height="900" fill="#f7efe4"/>
+  <rect x="100" y="100" width="1000" height="700" rx="46" fill="#d9c5a7"/>
+  <path d="M170 250h860M170 350h860M170 450h860M170 550h860M170 650h860" stroke="#f6ecdc" stroke-width="18" stroke-linecap="round" opacity=".8"/>
+  <path d="M240 135v620M360 135v620M480 135v620M600 135v620M720 135v620M840 135v620M960 135v620" stroke="#b99a6d" stroke-width="8" opacity=".42"/>
+  <rect x="700" y="548" width="290" height="118" rx="22" fill="#6f4f2f"/>
+  <path d="M740 605h210" stroke="#c0a16b" stroke-width="10" stroke-linecap="round"/>
+</svg>

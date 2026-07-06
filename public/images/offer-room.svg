@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Showroom consultation offer</title>
+  <desc id="desc">Premium room set with sofa, table, and fabric consultation.</desc>
+  <rect width="1200" height="900" fill="#efe3d2"/>
+  <rect y="620" width="1200" height="280" fill="#9d7b52"/>
+  <rect x="160" y="160" width="880" height="420" rx="40" fill="#fff9ef"/>
+  <rect x="250" y="455" width="545" height="170" rx="50" fill="#eadcc8"/>
+  <rect x="740" y="395" width="175" height="230" rx="56" fill="#c8ae88"/>
+  <rect x="820" y="650" width="250" height="48" rx="24" fill="#6f4f2f"/>
+  <circle cx="265" cy="235" r="66" fill="#c0a16b" opacity=".7"/>
+</svg>

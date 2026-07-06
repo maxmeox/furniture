@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+  <title id="title">Muted olive fabric</title>
+  <desc id="desc">Muted olive premium fabric swatch.</desc>
+  <rect width="900" height="900" fill="#6d725f"/>
+  <path d="M0 150h900M0 300h900M0 450h900M0 600h900M0 750h900" stroke="#a2a98f" stroke-width="15" opacity=".45"/>
+  <path d="M150 0v900M300 0v900M450 0v900M600 0v900M750 0v900" stroke="#4a4f41" stroke-width="11" opacity=".36"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="0 0 1200 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Previous dining table work</title>
+  <desc id="desc">Delivered dining table with warm wood finish.</desc>
+  <rect width="1200" height="1000" fill="#f4eadc"/>
+  <rect y="680" width="1200" height="320" fill="#8e6842"/>
+  <rect x="160" y="180" width="880" height="440" rx="42" fill="#fff8ed"/>
+  <rect x="250" y="560" width="700" height="92" rx="46" fill="#704a2d"/>
+  <path d="M330 650h70l-68 220h-70zM800 650h70l78 220h-70z" fill="#4a3020"/>
+</svg>

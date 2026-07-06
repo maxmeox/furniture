@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Warm wood sofa design</title>
+  <desc id="desc">Custom sofa with warm wood frame and ivory fabric.</desc>
+  <rect width="1200" height="900" fill="#f5ecdf"/>
+  <rect y="610" width="1200" height="290" fill="#b79867"/>
+  <rect x="110" y="110" width="980" height="520" rx="38" fill="#fff9ef"/>
+  <rect x="170" y="165" width="380" height="310" rx="24" fill="#6f4f2f"/>
+  <rect x="605" y="165" width="420" height="310" rx="24" fill="#d5bea0"/>
+  <ellipse cx="600" cy="732" rx="470" ry="64" fill="#2f261f" opacity=".16"/>
+  <rect x="200" y="520" width="800" height="180" rx="54" fill="#eadcc8"/>
+  <rect x="150" y="460" width="190" height="240" rx="58" fill="#d2b992"/>
+  <rect x="860" y="460" width="190" height="240" rx="58" fill="#d2b992"/>
+  <rect x="330" y="405" width="540" height="170" rx="44" fill="#f4eadb"/>
+  <rect x="430" y="448" width="140" height="95" rx="24" fill="#a98658"/>
+  <rect x="615" y="448" width="140" height="95" rx="24" fill="#7b5637"/>
+</svg>

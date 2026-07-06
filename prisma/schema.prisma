@@ -1,0 +1,480 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Locale {
+  ar
+  en
+  he
+}
+
+enum PublishStatus {
+  draft
+  published
+  archived
+}
+
+enum PriceLabel {
+  ask_for_price
+  depends_on_size_and_fabric
+  budget
+  medium
+  luxury
+}
+
+enum LeadStatus {
+  new
+  interested
+  asked_price
+  wants_customization
+  waiting_reply
+  follow_up_needed
+  deal_agreed
+  sold
+  lost
+}
+
+enum LeadSource {
+  website
+  whatsapp
+  facebook
+  instagram
+  referral
+  showroom
+}
+
+enum EventType {
+  page_view
+  whatsapp_click
+  lead_created
+  campaign_visit
+  admin_action
+  product_viewed
+  interest_item_added
+  interest_item_removed
+  interest_list_sent
+  fabric_selected
+  offer_viewed
+  campaign_viewed
+  gallery_opened
+}
+
+enum ImageType {
+  main
+  front_view
+  side_view
+  detail_view
+  fabric_close_up
+  customer_work
+  showroom_photo
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  role         String   @default("admin")
+  isActive     Boolean  @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Setting {
+  id            String   @id @default(cuid())
+  key           String   @unique
+  value         Json
+  labelAr       String?
+  labelEn       String?
+  labelHe       String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Category {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  nameAr        String
+  nameEn        String
+  nameHe        String
+  descriptionAr String?
+  descriptionEn String?
+  descriptionHe String?
+  imageUrl      String?
+  sortOrder     Int           @default(0)
+  status        PublishStatus @default(draft)
+  products      Product[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Product {
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  code             String?       @unique
+  categoryId       String
+  titleAr          String
+  titleEn          String
+  titleHe          String
+  summaryAr        String?
+  summaryEn        String?
+  summaryHe        String?
+  descriptionAr    String?
+  descriptionEn    String?
+  descriptionHe    String?
+  customizationAr  String?
+  customizationEn  String?
+  customizationHe  String?
+  availabilityAr   String?
+  availabilityEn   String?
+  availabilityHe   String?
+  priceLabel       PriceLabel    @default(depends_on_size_and_fabric)
+  isCustomMade     Boolean       @default(true)
+  isFeatured       Boolean       @default(false)
+  isNew            Boolean       @default(false)
+  status           PublishStatus @default(draft)
+  deletedAt        DateTime?
+  coverImageUrl    String?
+  seoTitleAr       String?
+  seoTitleEn       String?
+  seoTitleHe       String?
+  seoDescriptionAr String?
+  seoDescriptionEn String?
+  seoDescriptionHe String?
+  sortOrder        Int           @default(0)
+  category         Category      @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  images           ProductImage[]
+  albums           ProductAlbum[]
+  leads            Lead[]
+  events           Event[]
+  productFabrics   ProductFabric[]
+  productRelations ProductRelation[] @relation("productRelationsFrom")
+  relatedFrom      ProductRelation[] @relation("productRelationsTo")
+  offerProducts    OfferProduct[]
+  campaignProducts CampaignProduct[]
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+model ProductImage {
+  id           String   @id @default(cuid())
+  productId    String
+  url          String
+  publicId     String?
+  titleAr      String?
+  titleEn      String?
+  titleHe      String?
+  captionAr    String?
+  captionEn    String?
+  captionHe    String?
+  altAr        String?
+  altEn        String?
+  altHe        String?
+  imageType    ImageType @default(main)
+  sortOrder    Int      @default(0)
+  isCover      Boolean  @default(false)
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+
+  @@unique([productId, url])
+}
+
+model ProductAlbum {
+  id            String    @id @default(cuid())
+  productId     String
+  titleAr       String
+  titleEn       String
+  titleHe       String
+  descriptionAr String?
+  descriptionEn String?
+  descriptionHe String?
+  product       Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Fabric {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  code          String?       @unique
+  nameAr        String
+  nameEn        String
+  nameHe        String
+  familyAr      String?
+  familyEn      String?
+  familyHe      String?
+  colorNameAr   String?
+  colorNameEn   String?
+  colorNameHe   String?
+  hexColor      String?
+  typeAr        String?
+  typeEn        String?
+  typeHe        String?
+  availabilityAr String?
+  availabilityEn String?
+  availabilityHe String?
+  descriptionAr String?
+  descriptionEn String?
+  descriptionHe String?
+  imageUrl      String?
+  status        PublishStatus @default(draft)
+  images        FabricImage[]
+  leads         Lead[]
+  productFabrics ProductFabric[]
+  campaignFabrics CampaignFabric[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model FabricImage {
+  id        String   @id @default(cuid())
+  fabricId  String
+  url       String
+  publicId  String?
+  altAr     String?
+  altEn     String?
+  altHe     String?
+  sortOrder Int      @default(0)
+  fabric    Fabric   @relation(fields: [fabricId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([fabricId, url])
+}
+
+model Offer {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  titleAr       String
+  titleEn       String
+  titleHe       String
+  descriptionAr String?
+  descriptionEn String?
+  descriptionHe String?
+  imageUrl      String?
+  priceLabel    PriceLabel    @default(ask_for_price)
+  campaignSlug  String?
+  whatsappTemplateAr String?
+  whatsappTemplateEn String?
+  whatsappTemplateHe String?
+  startsAt      DateTime?
+  endsAt        DateTime?
+  status        PublishStatus @default(draft)
+  leads         Lead[]
+  offerProducts OfferProduct[]
+  campaignOffers CampaignOffer[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model GalleryAlbum {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  titleAr       String
+  titleEn       String
+  titleHe       String
+  descriptionAr String?
+  descriptionEn String?
+  descriptionHe String?
+  coverImageUrl String?
+  status        PublishStatus @default(draft)
+  items         GalleryItem[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model GalleryItem {
+  id            String        @id @default(cuid())
+  albumId       String?
+  titleAr       String?
+  titleEn       String?
+  titleHe       String?
+  captionAr     String?
+  captionEn     String?
+  captionHe     String?
+  imageUrl      String
+  publicId      String?
+  altAr         String?
+  altEn         String?
+  altHe         String?
+  imageType     ImageType     @default(customer_work)
+  sortOrder     Int           @default(0)
+  isFeatured    Boolean       @default(false)
+  status        PublishStatus @default(published)
+  album         GalleryAlbum? @relation(fields: [albumId], references: [id], onDelete: SetNull)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Lead {
+  id            String     @id @default(cuid())
+  name          String?
+  phone         String?
+  locale        Locale     @default(ar)
+  message       String?
+  sourcePageUrl String?
+  fabricSlug    String?
+  offerSlug     String?
+  campaignSlug  String?
+  interestItems Json?
+  deliveryArea  String?
+  inquiryType   String?
+  selectedFabric String?
+  generatedMessage String?
+  utmSource     String?
+  utmMedium     String?
+  utmCampaign   String?
+  utmContent    String?
+  fbclid        String?
+  referrer      String?
+  userAgent     String?
+  source        LeadSource @default(website)
+  status        LeadStatus @default(new)
+  manualName    String?
+  manualPhone   String?
+  notes         String?
+  followUpAt    DateTime?
+  productId     String?
+  fabricId      String?
+  offerId       String?
+  campaignId    String?
+  product       Product?   @relation(fields: [productId], references: [id], onDelete: SetNull)
+  fabric        Fabric?    @relation(fields: [fabricId], references: [id], onDelete: SetNull)
+  offer         Offer?     @relation(fields: [offerId], references: [id], onDelete: SetNull)
+  campaign      Campaign?  @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  events        Event[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([createdAt])
+  @@index([status, createdAt])
+  @@index([followUpAt])
+  @@index([campaignSlug, createdAt])
+  @@index([productId, createdAt])
+}
+
+model Event {
+  id          String    @id @default(cuid())
+  type        EventType
+  entityType  String?
+  entityId    String?
+  locale      Locale?
+  path        String?
+  referrer    String?
+  userAgent   String?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmContent  String?
+  fbclid      String?
+  metadata    Json?
+  productId   String?
+  campaignId  String?
+  leadId      String?
+  product     Product?  @relation(fields: [productId], references: [id], onDelete: SetNull)
+  campaign    Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  lead        Lead?     @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+
+  @@index([createdAt])
+  @@index([type, createdAt])
+  @@index([type, entityType, entityId, createdAt])
+  @@index([utmCampaign, createdAt])
+  @@index([utmSource, utmMedium, createdAt])
+}
+
+model Campaign {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  name          String
+  source        String        @default("facebook")
+  titleAr       String
+  titleEn       String
+  titleHe       String
+  descriptionAr String?
+  descriptionEn String?
+  descriptionHe String?
+  imageUrl      String?
+  status        PublishStatus @default(draft)
+  sortOrder     Int           @default(0)
+  startsAt      DateTime?
+  endsAt        DateTime?
+  leads         Lead[]
+  events        Event[]
+  campaignProducts CampaignProduct[]
+  campaignOffers  CampaignOffer[]
+  campaignFabrics CampaignFabric[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model ProductFabric {
+  productId String
+  fabricId  String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  fabric    Fabric  @relation(fields: [fabricId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([productId, fabricId])
+  @@index([fabricId])
+}
+
+model ProductRelation {
+  productId       String
+  relatedProductId String
+  product         Product @relation("productRelationsFrom", fields: [productId], references: [id], onDelete: Cascade)
+  relatedProduct  Product @relation("productRelationsTo", fields: [relatedProductId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+
+  @@id([productId, relatedProductId])
+  @@index([relatedProductId])
+}
+
+model OfferProduct {
+  offerId   String
+  productId String
+  offer     Offer   @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([offerId, productId])
+  @@index([productId])
+}
+
+model CampaignProduct {
+  campaignId String
+  productId  String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@id([campaignId, productId])
+  @@index([productId])
+}
+
+model CampaignOffer {
+  campaignId String
+  offerId    String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  offer      Offer    @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@id([campaignId, offerId])
+  @@index([offerId])
+}
+
+model CampaignFabric {
+  campaignId String
+  fabricId   String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  fabric     Fabric   @relation(fields: [fabricId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@id([campaignId, fabricId])
+  @@index([fabricId])
+}

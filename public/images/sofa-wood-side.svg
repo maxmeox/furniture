@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Side view sofa design</title>
+  <desc id="desc">Side view of custom sofa with deep seat and wood detail.</desc>
+  <rect width="1200" height="900" fill="#f2e7d7"/>
+  <rect y="635" width="1200" height="265" fill="#ad895a"/>
+  <rect x="180" y="310" width="780" height="280" rx="42" fill="#e9ddca"/>
+  <rect x="860" y="262" width="150" height="328" rx="48" fill="#c6a77c"/>
+  <rect x="220" y="470" width="680" height="145" rx="34" fill="#f5ead9"/>
+  <rect x="265" y="610" width="575" height="34" rx="17" fill="#61432c"/>
+  <path d="M320 644h44l-30 120h-44zM775 644h44l35 120h-44z" fill="#3e2a1e"/>
+  <circle cx="222" cy="205" r="68" fill="#c0a16b" opacity=".62"/>
+</svg>

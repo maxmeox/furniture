@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "lib/**/*.test.ts",
+    "lib/**/*.test.tsx"
+  ],
+  "compilerOptions": {
+    "plugins": [],
+    "types": []
+  }
+}

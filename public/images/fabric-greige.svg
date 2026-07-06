@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+  <title id="title">Greige woven fabric</title>
+  <desc id="desc">Greige woven upholstery fabric swatch.</desc>
+  <rect width="900" height="900" fill="#b8ab96"/>
+  <path d="M0 90h900M0 180h900M0 270h900M0 360h900M0 450h900M0 540h900M0 630h900M0 720h900M0 810h900" stroke="#d7cbbb" stroke-width="9" opacity=".58"/>
+  <path d="M90 0v900M180 0v900M270 0v900M360 0v900M450 0v900M540 0v900M630 0v900M720 0v900M810 0v900" stroke="#887b68" stroke-width="8" opacity=".42"/>
+</svg>

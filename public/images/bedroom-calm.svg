@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Calm bedroom suite</title>
+  <desc id="desc">Custom bedroom suite with deep wood and warm neutral bedding.</desc>
+  <rect width="1200" height="900" fill="#f5ecdf"/>
+  <rect y="640" width="1200" height="260" fill="#8e6842"/>
+  <rect x="180" y="150" width="840" height="430" rx="36" fill="#fff8ec"/>
+  <rect x="255" y="210" width="690" height="260" rx="26" fill="#6f4f2f"/>
+  <rect x="230" y="465" width="740" height="210" rx="44" fill="#eadbc6"/>
+  <rect x="315" y="410" width="230" height="130" rx="30" fill="#fbf4e9"/>
+  <rect x="575" y="410" width="230" height="130" rx="30" fill="#fbf4e9"/>
+  <rect x="220" y="668" width="760" height="38" rx="19" fill="#4b3324"/>
+</svg>
