@@ -7,20 +7,20 @@ import type { TenantConfig } from './lib/types/tenant'
 
 const config: TenantConfig = {
   identity: {
-    nameAr:        'مفروشات أبو عيسى',
-    nameEn:        'Abu Issa Furniture',
+    nameAr:        'مفروشات إفتراضية',
+    nameEn:        'default Furniture',
     nameHe:        'רהיטי אבו עיסא',
-    shortNameAr:   'أبو عيسى',
-    shortNameEn:   'Abu Issa',
+    shortNameAr:   'إفتراضي',
+    shortNameEn:   'Default',
     taglineAr:     'كتالوج مفروشات منظم للاستفسار عبر واتساب',
     taglineEn:     'Organized furniture catalog for WhatsApp inquiries',
     descriptionAr: 'معرض مفروشات في قلقيلية يقدم أطقم كنب، زوايا، غرف معيشة، وخيارات تفصيل حسب الطلب.',
     descriptionEn: 'A Qalqilya furniture showroom for sofa sets, corner sofas, living rooms, and made-to-order options.',
-    heroTitleAr:   'مفروشات أبو عيسى',
-    heroTitleEn:   'Abu Issa Furniture',
+    heroTitleAr:   'مفروشات إفتراضية',
+    heroTitleEn:   'Default Furniture',
     address: {
-      ar: 'قلقيلية - منطقة المرج - بالقرب من عمارة النجمة',
-      en: 'Qalqilya — Al-Marj Area',
+      ar: 'قلقيلية - صوفين',
+      en: 'Qalqilya — sofen',
       he: "קלקיליה — אל-מרג'",
     },
     city:        'قلقيلية',
@@ -29,19 +29,19 @@ const config: TenantConfig = {
   },
 
   contact: {
-    whatsappNumber: '970528682975',
-    phone:          '00972528682975',
+    whatsappNumber: '972599720696',
+    phone:          '00972599720696',
     email:          '',
     googleMapsUrl:  '',
     whatsappDefaultMessage: {
-      ar: 'مرحبًا مفروشات أبو عيسى، أريد الاستفسار عن منتج من الكتالوج.',
-      en: 'Hello Abu Issa Furniture, I would like to ask about a catalog product.',
+      ar: 'مرحبًا مفروشات إفتراضية، أريد الاستفسار عن منتج من الكتالوج.',
+      en: 'Hello Furniture, I would like to ask about a catalog product.',
       he: 'שלום רהיטי אבו עיסא, ברצוני לברר על מוצר מהקטלוג.',
     },
   },
 
   social: {
-    facebook:  'https://www.facebook.com/people/Abu-Issa-Furniture-Factory/61566872285161/',
+    facebook:  'https://www.facebook.com/people/',
     instagram: '',
     tiktok:    '',
     youtube:   '',
@@ -54,13 +54,13 @@ const config: TenantConfig = {
       darkUrl:  '/images/brand/logo.png',
       width:    140,
       height:   40,
-      altAr:    'شعار مفروشات أبو عيسى',
-      altEn:    'Abu Issa Furniture Logo',
+      altAr:    'شعار مفروشات إفتراضية',
+      altEn:    'Furniture Logo',
     },
     favicon:        '/favicon.svg',
     appleTouchIcon: '/favicon.png',
     ogImage:        '/images/hero-showroom.svg',
-    defaultTheme:   'default',
+    defaultTheme:   'luxury',
     autoDarkMode:   false,
   },
 
@@ -117,18 +117,18 @@ const config: TenantConfig = {
   ],
 
   texts: {
-    footerTextAr:              'مفروشات أبو عيسى - قلقيلية',
-    footerTextEn:              'Abu Issa Furniture - Qalqilya',
-    homepageFinalSubtitleAr:   'أرسل لمفروشات أبو عيسى المنتجات أو الأقمشة التي أعجبتك عبر واتساب. لا يوجد دفع إلكتروني ولا سعر ثابت، فقط استشارة مباشرة حسب طلبك.',
-    homepageFinalSubtitleEn:   'Send Abu Issa Furniture your preferred products or fabric choices by WhatsApp. No checkout, no fixed price, just direct consultation.',
+    footerTextAr:              'مفروشات إفتراضية - قلقيلية',
+    footerTextEn:              'Furniture - Qalqilya',
+    homepageFinalSubtitleAr:   'أرسل لمفروشات إفتراضية المنتجات أو الأقمشة التي أعجبتك عبر واتساب. لا يوجد دفع إلكتروني ولا سعر ثابت، فقط استشارة مباشرة حسب طلبك.',
+    homepageFinalSubtitleEn:   'Send Default Furniture your preferred products or fabric choices by WhatsApp. No checkout, no fixed price, just direct consultation.',
     whatsappProductInquiryAr:  'مرحبًا، أود الاستفسار عن هذا المنتج',
     whatsappProductInquiryEn:  "Hello, I'd like to inquire about this product",
   },
 
   admin: {
-    email:               'info@abuissa.ps',
+    email:               'admin@admin.com',
     sessionDurationHours: 8,
-    formBackupKey:        'abu-issa-admin-form-backup',
+    formBackupKey:        'admin',
   },
 }
 
