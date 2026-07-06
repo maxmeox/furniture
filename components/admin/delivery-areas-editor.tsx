@@ -1,31 +1,49 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function DeliveryAreasEditor({ areas }: { areas: string[] }) {
   const [items, setItems] = useState<string[]>(areas.length > 0 ? areas : [""]);
   const dataRef = useRef<HTMLInputElement>(null);
 
+  const syncData = useCallback((next?: string[]) => {
+    if (dataRef.current) {
+      dataRef.current.value = (next ?? items).join("\n");
+    }
+  }, [items]);
+
+  // تُحدّث الـ hidden input فوراً عند كل تغيير في items
+  useEffect(() => {
+    syncData();
+  }, [syncData]);
+
   function updateItem(index: number, value: string) {
-    setItems((prev) => prev.map((item, i) => (i === index ? value : item)));
+    setItems((prev) => {
+      const next = prev.map((item, i) => (i === index ? value : item));
+      // مزامنة فورية لضمان وصول البيانات قبل submit
+      syncData(next);
+      return next;
+    });
   }
 
   function addItem() {
-    setItems((prev) => [...prev, ""]);
+    setItems((prev) => {
+      const next = [...prev, ""];
+      syncData(next);
+      return next;
+    });
   }
 
   function removeItem(index: number) {
-    setItems((prev) => prev.filter((_, i) => i !== index));
-  }
-
-  function syncData() {
-    if (dataRef.current) {
-      dataRef.current.value = items.join("\n");
-    }
+    setItems((prev) => {
+      const next = prev.filter((_, i) => i !== index);
+      syncData(next);
+      return next;
+    });
   }
 
   return (
-    <div className="grid gap-3" onClick={syncData}>
+    <div className="grid gap-3">
       <input type="hidden" name="deliveryAreas" ref={dataRef} />
       {items.map((item, index) => (
         <div key={index} className="flex items-center gap-2">

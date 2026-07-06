@@ -29,8 +29,8 @@ const config: TenantConfig = {
   },
 
   contact: {
-    whatsappNumber: '972599720696',
-    phone:          '00972599720696',
+    whatsappNumber: '970599720696',
+    phone:          '00970599720696',
     email:          '',
     googleMapsUrl:  '',
     whatsappDefaultMessage: {
@@ -50,8 +50,8 @@ const config: TenantConfig = {
 
   branding: {
     logo: {
-      lightUrl: '/images/brand/logo.png',
-      darkUrl:  '/images/brand/logo.png',
+      lightUrl: '/brand/logo.png',
+      darkUrl:  '/brand/logo.png',
       width:    140,
       height:   40,
       altAr:    'شعار مفروشات إفتراضية',

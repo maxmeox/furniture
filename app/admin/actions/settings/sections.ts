@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { isThemePresetId } from "@/lib/theme-presets";
-import { normalizeShowroomWhatsApp, type FaqItem, type ShowroomProfile } from "@/lib/showroom-profile";
+import { type FaqItem, type ShowroomProfile } from "@/lib/showroom-profile";
 import { checkbox, imagePathOrUrl, listFromText, requiredSafeText, safeText, textValue, urlOrEmpty } from "../utils";
 import { settingsError } from "./shared";
 
@@ -45,16 +45,23 @@ const identity: SectionHandler = async (current, formData) => {
 };
 
 const contact: SectionHandler = async (current, formData) => {
+  const rawWhatsApp = textValue(formData, "whatsapp");
+  const digits = rawWhatsApp.replace(/\D/g, "");
+  if (!digits || digits.length < 8 || digits.length > 18) {
+    console.error("[contact] WhatsApp validation failed", { rawWhatsApp, digits });
+    settingsError(`رقم واتساب غير صحيح: "${rawWhatsApp}" ← "${digits || "(فارغ)"}". يجب أن يكون أرقامًا فقط (8-18 رقم).`);
+  }
   const parsed = z.object({
     phone: t120,
     address: rt240,
     city: t120,
     location: t120,
     workingHours: t240,
-    whatsapp: z.string().trim().min(8).max(24).transform(normalizeShowroomWhatsApp).refine((value) => /^\d{8,18}$/.test(value), "رقم واتساب غير صحيح")
+    whatsapp: z.string().trim().min(8).max(24).transform(() => digits).refine((value) => /^\d{8,18}$/.test(value), "رقم واتساب غير صحيح")
   }).safeParse(Object.fromEntries(formData));
   const deliveryAreas = listFromText(textValue(formData, "deliveryAreas"));
-  if (!parsed.success || deliveryAreas.length === 0) settingsError("راجع رقم واتساب ومناطق التوصيل. يجب أن يكون رقم واتساب أرقامًا فقط بعد التنظيف.");
+  if (!parsed.success) settingsError(`رقم واتساب غير صحيح: "${rawWhatsApp}". تأكد من أنه أرقام فقط.`);
+  if (deliveryAreas.length === 0) settingsError("مناطق التوصيل فارغة. أضف منطقة توصيل واحدة على الأقل.");
   return { ...current, ...parsed.data, deliveryAreas };
 };
 
