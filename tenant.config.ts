@@ -60,7 +60,7 @@ const config: TenantConfig = {
     favicon:        '/favicon.svg',
     appleTouchIcon: '/favicon.png',
     ogImage:        '/images/hero-showroom.svg',
-    defaultTheme:   'luxury',
+    defaultTheme:   'luxury-classic',
     autoDarkMode:   false,
   },
 
